@@ -13,10 +13,10 @@ class MaterialDonationController extends Controller
 
 
     $user_id=$request["user_id"]??-1;
-    $column_name=$request["column_name"]??"";
+    $column_name=$request["colmun_name"]??"";
 
     return view('admin.materialdonation.index',[
-        'user_id'=>$user_id,'column_name'=>$column_name
+        'user_id'=>$user_id,'colmun_name'=>$column_name
     ]);
    }
 
