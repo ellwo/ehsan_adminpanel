@@ -60,7 +60,7 @@
                         <td class="flex flex-col">
                         {{ $user->monetarydonations->count()}}
                         <br>
-                        <a style="margin-top:20px;" class="btn bg-white border btn-default" href="{{route('monetarydonation',['user_id'=>$user->id,'column_name'=>'user_id'])}}">
+                        <a style="margin-top:20px;" class="btn bg-white border btn-default" href="{{route('monetarydonation',['user_id'=>$user->id,'colmun_name'=>'user_id'])}}">
                             عرض                            </a>
                         </td>
                     </tr>
@@ -71,14 +71,14 @@
                         <td class="flex flex-col">
                         {{ $user->materialdonations->count()}}
                         <br>
-                        <a style="margin-top:20px;" class="btn bg-white border btn-default" href="{{route('materialdonation',['user_id'=>$user->id,'column_name'=>'user_id'])}}">
+                        <a style="margin-top:20px;" class="btn bg-white border btn-default" href="{{route('materialdonation',['user_id'=>$user->id,'colmun_name'=>'user_id'])}}">
                             عرض                            </a>
 
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <a style="margin-top:20px;" class="btn btn-default" 
+            <a style="margin-top:20px;" class="btn btn-default"
             href="{{ url()->previous() }}">
                 {{ trans('global.back_to_list') }}
             </a>
