@@ -1,0 +1,256 @@
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
+
+"Indicates what fields are available at the top level of a query operation."
+type Query {
+
+ qgetemail(column_name:String user:String password:String ):ResponGetEmailInfo
+
+
+
+   me: User  @auth
+
+  SearchDonor(column_name:String value:String):SearchDonorRespons @guard
+
+
+
+  UserActivites(
+    type:String
+    monetarydonations_page:Int
+    materialdonations_page:Int
+  ):UserActivitesResponse @guard
+
+
+}
+
+"Account of a person who utilizes this application."
+type User {
+    "Unique primary key."
+    id: ID!
+    username:String
+    phone:String
+    avatar:String
+    name: String!
+    roles:[Role]
+    email: String!
+    email_verified_at: Boolean
+    phone_verified_at: Boolean
+    sum_ye:Float @method(name: "sum_ye")
+    sum_us:Float @method(name: "sum_us")
+    sum_ksa:Float @method(name: "sum_ksa")
+
+    "When the account was created."
+    created_at: DateTime!
+
+    "When the account was last updated."
+    updated_at: DateTime!
+}
+
+
+
+
+
+
+type Mutation {
+    "Log in to a new session and get the user."
+    # login(
+    #     username:String
+    #     user:String
+    #     email: String
+    #     password: String!
+    #     tokenname:String
+    #     logoutfromall:Boolean): RegisterInfo
+
+    registeruser(name:String!
+        email:String!
+        password:String!
+        confirm_password:String!
+        username:String
+        phone:String
+        avatar:String
+        tokenname:String
+    ):RegisterInfo
+
+
+
+
+    # tryusername(username:String!):ResponInfo
+    "Log out from the current session, showing the user one last time."
+
+    #  startChatRoomGQL(
+    #      model_type:String!
+    #  model_id:Int! ):ChatRoom @guard
+
+     mylogout(all:Boolean ): ResponInfo @guard
+
+
+      UserSendvcode(phone:String):ResponInfoSendCode @guard
+      VerifyPhone(code:String):ResponInfoSendCode @guard
+      ChangeFToken(f_token:String):ResponInfo @guard
+
+
+      CreateNewMonetaryDonationsM(
+        amount:Float
+        note:String
+        donor_id:Int
+        type:Int
+      ):
+      MonetaryDonationRespone @guard
+
+
+
+      CreateNewMaterialDonationsM(
+        name:String
+        note:String
+        donor_id:Int
+      ):
+      MaterialDonationRespone @guard
+
+CreateNewDonorM(
+    name:String
+    phone:String
+    note:String
+    gender:Boolean
+):SearchDonorRespons @guard
+
+    # sendEamilVN:User
+}
+
+
+
+type ResponInfoSendCode{
+    responInfo:ResponInfo
+    nextcode:Int
+}
+
+
+
+type ResponGetEmailInfo{
+    email:String
+    responsinfo:ResponInfo
+}
+type ResponInfo{
+    state:Boolean
+    errors:String
+    message:String
+    code:Int
+}
+
+type RegisterInfo{
+    user:User
+    errors:String
+    message:String
+    code:String
+    state:Boolean
+    token:String
+}
+
+type SearchDonorRespons{
+    responsinfo:ResponInfo
+    donor:Donor
+}
+
+type MonetaryDonationRespone{
+    monetarydonation:MonetaryDonation
+    responsinfo:ResponInfo
+}
+type MaterialDonationRespone{
+    materialdonation:MaterialDonation
+    responsinfo:ResponInfo
+}
+
+
+
+
+type Role{
+    id:Int
+    name:String
+}
+
+
+
+
+type Processetoken{
+    id:ID
+    token:String
+    expired_at:DateTime
+    user:User @belongsTo
+}
+
+
+type MonetaryDonation{
+    id:ID
+    amount:Float
+    note:String
+    type:Int
+    user:User @belongsTo
+    donor:Donor @belongsTo
+    created_at:DateTime
+    updated_at:DateTime}
+
+type MaterialDonation{
+    id:ID
+    name:String
+    note:String
+    user:User @belongsTo
+    donor:Donor @belongsTo
+    created_at:DateTime
+    updated_at:DateTime}
+
+
+type Donor{
+    id:ID
+    name:String
+    phone:String
+    note:String
+    gender:Boolean
+    materialdonations:[MaterialDonation] @hasMany
+    monetarydonations:[MonetaryDonation] @hasMany
+    user:User @belongsTo
+    created_at:DateTime
+    updated_at:DateTime
+}
+
+
+
+
+
+
+
+#التبرعات العينية جروب باي التاريخ
+type MaterialdonationsactivitesByBageAndDate{
+date:String
+materialdonations:[MaterialDonation]
+}
+
+#التبرعات النقدية جروب باي التاريخ
+type MonetarydonationsactivitesByBageAndDate{
+date:String
+monetarydonations:[MonetaryDonation]
+}
+
+
+
+
+
+
+#هنا عشان نرسل رقم الصفحة يديهن 20 20
+type Materialdonationsactivites{
+    data:[MaterialdonationsactivitesByBageAndDate]
+    total:Int
+    hasmore:Boolean
+}
+#هنا عشان نرسل رقم الصفحة يديهن 20 20
+type Monetarydonationsactivites{
+    data:[MonetarydonationsactivitesByBageAndDate]
+    total:Int
+    hasmore:Boolean
+}
+
+type UserActivitesResponse{
+materialdonationsactivites:Materialdonationsactivites
+monetarydonationsactivites:Monetarydonationsactivites
+responsinfo:ResponInfo
+}
+

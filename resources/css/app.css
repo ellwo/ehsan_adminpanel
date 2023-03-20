@@ -1,0 +1,104 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "perfect-scrollbar/css/perfect-scrollbar.css";
+@import "tailwindcss/utilities";
+.dark .ps__rail-y,
+.dark .ps__rail-x {
+    background-color: transparent !important;
+}
+
+:root {
+    --light: #ffffff;
+    /* --dark: #0b1436;
+    --darker: #070C21; */
+    --dark: #13263d;
+    --darker: #0e1b2c;
+    /*  */
+    --color-primary: var(--color-cyan);
+    --color-primary-50: var(--color-cyan-50);
+    --color-primary-100: var(--color-cyan-100);
+    --color-primary-light: var(--color-cyan-light);
+    --color-primary-lighter: var(--color-cyan-lighter);
+    --color-primary-dark: var(--color-cyan-dark);
+    --color-primary-darker: var(--color-cyan-darker);
+    --color-primary-onprimary: var(--color-cyan-onprimary);
+    /*  */
+    --color-green: #16a34a;
+    --color-green-50: #f0fdf4;
+    --color-green-100: #dcfce7;
+    --color-green-light: #22c55e;
+    --color-green-lighter: #4ade80;
+    --color-green-dark: #15803d;
+    --color-green-darker: #166534;
+    /*  */
+    --color-blue: #2563eb;
+    --color-blue-50: #eff6ff;
+    --color-blue-100: #dbeafe;
+    --color-blue-light: #3b82f6;
+    --color-blue-lighter: #60a5fa;
+    --color-blue-dark: #1d4ed8;
+    --color-blue-darker: #1e40af;
+    /*  */
+    --color-cyan: #0891b2;
+    --color-cyan-50: #ecfeff;
+    --color-cyan-100: #cffafe;
+    --color-cyan-light: #06b6d4;
+    --color-cyan-lighter: #22d3ee;
+    --color-cyan-dark: #0e7490;
+    --color-cyan-darker: #155e75;
+    /*  */
+    --color-teal: #0d9488;
+    --color-teal-50: #f0fdfa;
+    --color-teal-100: #ccfbf1;
+    --color-teal-light: #14b8a6;
+    --color-teal-lighter: #2dd4bf;
+    --color-teal-dark: #0f766e;
+    --color-teal-darker: #115e59;
+    /*  */
+    --color-fuchsia: #FF7D00;
+    --color-fuchsia-50: #c1c3c9;
+    --color-fuchsia-100: #424474;
+    --color-fuchsia-light: #FF7D00;
+    --color-fuchsia-lighter: #fa973a;
+    --color-fuchsia-dark: #101b3f;
+    --color-fuchsia-darker: #070C21;
+    --color-fuchsia-onprimary: #0b0842;
+    --color-mycolor: #FF7D00;
+    --color-mycolor-50: #333e64;
+    --color-mycolor-100: #ffa856;
+    --color-mycolor-light: #FF7D00;
+    --color-mycolor-lighter: #fa973a;
+    --color-mycolor-dark: #152e4d;
+    --color-mycolor-darker: #12263f;
+    --color-mycolor-onprimary: #0b0842;
+    /*  */
+    --color-violet: #7c3aed;
+    --color-violet-50: #f5f3ff;
+    --color-violet-100: #ede9fe;
+    --color-violet-light: #8b5cf6;
+    --color-violet-lighter: #a78bfa;
+    --color-violet-dark: #6d28d9;
+    --color-violet-darker: #5b21b6;
+}
+
+@layer components {
+    .toggle:checked+span {
+        @apply top-0 left-6 bg-primary;
+    }
+    .toggle:disabled+span {
+        @apply bg-gray-500 shadow-none;
+    }
+    .toggle:checked:disabled {
+        @apply bg-gray-200;
+    }
+    .toggle:checked:disabled+span {
+        @apply shadow-none bg-primary-lighter;
+    }
+    .toggle:focus+span {
+        @apply ring ring-primary-lighter;
+    }
+    input:invalid.invalid,
+    textarea:invalid.invalid {
+        @apply ring ring-danger-light dark: ring-danger;
+    }
+}
