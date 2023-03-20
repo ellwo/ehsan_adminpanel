@@ -11,6 +11,13 @@
           <!-- Brand -->
          <x-application-logo class="h-24 w-24" />
     <main>
+
+        <!-- Session Status -->
+        <x-auth-session-status class="mb-4" :status="session('status')" />
+
+        <!-- Validation Errors -->
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
         <h1 class="sr-only">Request new password</h1>
         <div class="w-full max-w-sm px-4 py-6 space-y-6 bg-white rounded-md dark:bg-darker">
           <p class="text-sm font-medium text-center text-gray-500 dark:text-gray-400">
@@ -51,12 +58,6 @@
         <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
             {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
         </div>
-
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
         <form method="POST" action="{{ route('password.email') }}">
             @csrf
