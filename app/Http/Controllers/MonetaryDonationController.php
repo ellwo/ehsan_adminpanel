@@ -13,7 +13,7 @@ class MonetaryDonationController extends Controller
    public function index(Request $request){
 
     $user_id=$request['user_id']??-1;
-    $column_name=$request['colmun_name']??"";
+    $colmun_name=$request['colmun_name']??"";
     return view('admin.monetarydonation.index',compact('user_id','colmun_name'));
    }
 
