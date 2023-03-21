@@ -12,10 +12,7 @@ type Query {
    me: User  @auth
 
   SearchDonor(column_name:String value:String):SearchDonorRespons @guard
-
-
-
-  UserActivites(
+ UserActivites(
     type:String
     monetarydonations_page:Int
     materialdonations_page:Int
@@ -54,7 +51,7 @@ type User {
 
 type Mutation {
 
-     mylogout(all:Boolean ): ResponInfo @guard
+     MyLogout(all:Boolean ): ResponInfo @guard
 
 
       UserSendvcode(phone:String):ResponInfoSendCode @guard
