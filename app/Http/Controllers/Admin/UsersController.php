@@ -13,7 +13,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Permission;
+// use Spatie\Permission\Models\Permission;
 
 class UsersController extends Controller
 {
@@ -24,7 +24,6 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
-
 
 
         $user=User::find(auth()->user()->id);

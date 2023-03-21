@@ -16,6 +16,7 @@ class DashBoardController extends Controller
 
 
 
+
         $monetarydonations=MonetaryDonation::all();
         $monetarydonation_ye=$monetarydonations->where('type','=',0)->sum('amount');
 

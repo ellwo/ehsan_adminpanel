@@ -53,34 +53,6 @@ type User {
 
 
 type Mutation {
-    "Log in to a new session and get the user."
-    # login(
-    #     username:String
-    #     user:String
-    #     email: String
-    #     password: String!
-    #     tokenname:String
-    #     logoutfromall:Boolean): RegisterInfo
-
-    registeruser(name:String!
-        email:String!
-        password:String!
-        confirm_password:String!
-        username:String
-        phone:String
-        avatar:String
-        tokenname:String
-    ):RegisterInfo
-
-
-
-
-    # tryusername(username:String!):ResponInfo
-    "Log out from the current session, showing the user one last time."
-
-    #  startChatRoomGQL(
-    #      model_type:String!
-    #  model_id:Int! ):ChatRoom @guard
 
      mylogout(all:Boolean ): ResponInfo @guard
 
