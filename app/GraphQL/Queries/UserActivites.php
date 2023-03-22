@@ -20,6 +20,13 @@ final class UserActivites
         $user=User::find(auth()->user()->id);
 
 
+
+        if(!isset($args["type"]))
+        {
+            $args["type"]="all";
+        }
+
+
      if($args['type']=="monetarydonation"){
         $monetarydonations_acivites=$user->monetarydonations_acivites($args['monetarydonations_page']??1);
         return[

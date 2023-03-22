@@ -7,34 +7,34 @@
                 <x-button href="{{ url()->previous() }}">عودة الى القائمة</x-button>
 
 
-                <div class="text-center text-4xl font-bold mx-auto">
+                <div class="text-center  lg:text-4xl font-bold mx-auto">
                     تفاصيل تبرع عيني رقم : {{ $mon->id }}
                 </div>
 
 
-                <div class="m-6 p-6 shadow-sm rounded-md border dark:bg-dark">
-                    <div dir="rtl" class="flex mx-auto rounded-sm border p-2 space-y-4 w-1/2 flex-col">
+                <div class="lg:m-6 lg:p-6 shadow-sm rounded-md border dark:bg-dark">
+                    <div dir="rtl" class="flex mx-auto rounded-sm border p-2 space-y-4 lg:w-1/2 flex-col">
 
 
                         <div class="flex justify-start space-x-2">
-                            <div class="w-1/4 h-full px-2 font-bold border-l-2 text-info">
+                            <div class="lg:w-1/4 h-full px-2 font-bold border-l-2 text-info">
 
                                 <b class="mx-1">اسم المتبرع</b>
 
                             </div>
-                            <div class="w-3/4 px-2">
+                            <div class="lg:w-3/4 px-2">
                                 {{ $mon->donor->name }}
                             </div>
 
                         </div>
 
                         <div class="flex justify-start space-x-2">
-                            <div class="w-1/4 h-full px-2 font-bold border-l-2 text-info">
+                            <div class="lg:w-1/4 h-full px-2 font-bold border-l-2 text-info">
 
                                 <b class="mx-1"> رقم هاتف المتبرع</b>
 
                             </div>
-                            <div class="w-3/4 px-2">
+                            <div class="lg:w-3/4 px-2">
                                 {{ $mon->donor->phone }}
                             </div>
 
@@ -43,12 +43,12 @@
 
 
                         <div class="flex justify-start space-x-2">
-                            <div class="w-1/4 h-full px-2 font-bold border-l-2 text-info">
+                            <div class="lg:w-1/4 h-full px-2 font-bold border-l-2 text-info">
 
                                 <b class="mx-1"> المتبرع به</b>
 
                             </div>
-                            <div class="w-3/4 px-2">
+                            <div class="lg:w-3/4 px-2">
                                 <span>
                                     {{ $mon->name }}
 
@@ -60,7 +60,7 @@
 
 
                         <div class="flex justify-start space-x-2">
-                            <div class="w-1/4 h-full px-2 font-bold border-l-2 text-info">
+                            <div class="lg:w-1/4 h-full px-2 font-bold border-l-2 text-info">
 
                                 <b class="mx-1"> الملاحظات</b>
 
