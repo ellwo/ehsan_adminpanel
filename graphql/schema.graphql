@@ -153,6 +153,7 @@ type MonetaryDonation{
     amount:Float
     note:String
     type:Int
+    state:Int
     user:User @belongsTo
     donor:Donor @belongsTo
     created_at:DateTime
@@ -163,6 +164,7 @@ type MaterialDonation{
     name:String
     note:String
     user:User @belongsTo
+    state:Int
     donor:Donor @belongsTo
     created_at:DateTime
     updated_at:DateTime}
@@ -206,13 +208,13 @@ monetarydonations:[MonetaryDonation]
 
 #هنا عشان نرسل رقم الصفحة يديهن 20 20
 type Materialdonationsactivites{
-    data:[MaterialdonationsactivitesByBageAndDate]
+    data:[MaterialDonation]
     total:Int
     hasmore:Boolean
 }
 #هنا عشان نرسل رقم الصفحة يديهن 20 20
 type Monetarydonationsactivites{
-    data:[MonetarydonationsactivitesByBageAndDate]
+    data:[MonetaryDonation]
     total:Int
     hasmore:Boolean
 }

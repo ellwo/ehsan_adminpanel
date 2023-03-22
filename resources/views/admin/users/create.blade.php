@@ -21,9 +21,9 @@
                     {{ trans('cruds.user.fields.name_helper') }}
                 </p>
             </div>
-            <div class="form-group {{ $errors->has('username') ? 'has-error' : '' }}">
-                <label for="name">الاسم الفريد *</label>
-                <input type="text" id="username" name="username" class="form-control" value="{{ old('username', isset($user) ? $user->username : '') }}" required>
+            {{-- <div class="form-group {{ $errors->has('username') ? 'has-error' : '' }}">
+                <label for="name">الاسم الفريد (اختياري) *</label>
+                <input type="text" id="username" name="username" class="form-control" value="{{ old('username', isset($user) ? $user->username : '') }}" >
                 @if($errors->has('username'))
                     <em class="invalid-feedback">
                         {{ $errors->first('username') }}
@@ -33,7 +33,7 @@
                     {{ trans('cruds.user.fields.name_helper') }}
                 </p>
 
-            </div>
+            </div> --}}
 
             <div class="form-group {{ $errors->has('phone') ? 'has-error' : '' }}">
                 <label for="name">رقم الهاتف*</label>
@@ -102,7 +102,7 @@
                 </p>
             </div>
             <div>
-                <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
+                <input class=" btn w-full bg-info" type="submit" value="{{ trans('global.save') }}">
             </div>
         </form>
 

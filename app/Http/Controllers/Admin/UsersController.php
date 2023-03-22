@@ -96,6 +96,9 @@ class UsersController extends Controller
             return abort(401);
         }
         $user = User::create($request->all());
+
+
+
         $roles = $request->input('roles') ? $request->input('roles') : [];
         $user->assignRole($roles);
 

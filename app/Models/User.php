@@ -90,29 +90,16 @@ class User extends Authenticatable implements BannableContract
         $total=$acivites->total();
         $hasmore=$acivites->hasMorePages()??false;
 
-         $acivites=$acivites->groupBy(
-             function($date){
-               return Carbon::parse($date->created_at)->format('Y-m-d'); // grouping by months
-             }
-         );
-         $oac=[];
-         foreach($acivites as $k=>$v){
-            $oac[]=[
-                "date"=>$k,
-                "monetarydonations"=>$v
-            ];
-         }
          $monaterialdonationsactivites=[
             'total'=>$total,
             'hasmore'=>$hasmore,
-            'data'=>$oac
+            'data'=>$acivites
          ];
 
 
 
          return $monaterialdonationsactivites;
 
-         return $oac;
 
     }
     public function materialdonations_acivites($page=1){
@@ -126,22 +113,11 @@ class User extends Authenticatable implements BannableContract
 
         $total=$acivites->total();
         $hasmore=$acivites->hasMorePages();
-        $acivites=$acivites->groupBy(
-             function($date){
-               return Carbon::parse($date->created_at)->format('Y-m-d'); // grouping by months
-             }
-         );
-         $oac=[];
-         foreach($acivites as $k=>$v){
-            $oac[]=[
-                "date"=> $k,
-                "materialdonations"=>$v
-            ];
-         }
+
          $materialdonationsactivites=[
             'total'=>$total,
             'hasmore'=>$hasmore,
-            'data'=>$oac
+            'data'=>$acivites
          ];
          return $materialdonationsactivites;
 
