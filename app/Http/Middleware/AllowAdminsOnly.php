@@ -21,8 +21,12 @@ class AllowAdminsOnly
         if(Auth::check()){
         if (! Gate::allows('users_manage')) {
 
+            $email=auth()->user()->email;
             Auth::logout();
-            return redirect()->route('login');
+            return redirect()->route('login')->
+            withInput(['user'=>$email])->withErrors(
+                ['user'=>'لايمكنك الوصول لحسابك مسموح فقط للادمن ']
+            );
             return abort(401);
         }
     }

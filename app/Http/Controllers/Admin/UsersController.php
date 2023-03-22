@@ -26,8 +26,6 @@ class UsersController extends Controller
     {
 
 
-        $user=User::find(auth()->user()->id);
-
         if($request->has('change_language'))
         {app()->setLocale($request['change_language']);
 
@@ -38,11 +36,12 @@ class UsersController extends Controller
 
         if(isset($request['ban'] )&& $request["ban"]==1)
         {
-            $users=User::onlyBanned()->get();
+            $users=User::onlyBanned()->paginate(5);
+            return view('admin.users.index-bans', compact('users'));
 
         }
         else
-        $users = User::with('roles')->get();
+        $users = User::with('roles')->paginate(5);
 
         return view('admin.users.index', compact('users'));
     }
