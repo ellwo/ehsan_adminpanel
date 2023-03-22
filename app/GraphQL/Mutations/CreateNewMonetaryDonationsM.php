@@ -3,6 +3,7 @@
 namespace App\GraphQL\Mutations;
 
 use App\Events\NewMonetaryDonation;
+use App\Models\Donor;
 use App\Models\MonetaryDonation;
 use Exception;
 
@@ -21,7 +22,6 @@ final class CreateNewMonetaryDonationsM
         , [
             'amount'=>'required',
             'type'=>'required',
-            'donor_id'=>'required|exists:donors,id',
             //'phone'=>'required','min:9','max:9','unique:donors,phone'
         ]);
 
@@ -45,11 +45,19 @@ final class CreateNewMonetaryDonationsM
 
 
 
+            $donor=Donor::updateOrCreate([
+                'phone'=>$args["donor"]["phone"],
+            ],
+                [
+                    'name'=>$args["donor"]["name"],
+                    'gender'=>$args["donor"]["gender"]
+                ]
+                );
                $monetary_donation= MonetaryDonation::create(
                     [
                         'amount'=>$args['amount'],
                         'note'=>$args['note']??"",
-                        'donor_id'=>$args['donor_id']??"",
+                        'donor_id'=>$donor->id,
                         'type'=>$args['type']??0,
                         'user_id'=>auth()->user()->id
                     ]

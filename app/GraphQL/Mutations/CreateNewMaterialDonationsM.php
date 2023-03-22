@@ -2,6 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
+use App\Models\Donor;
 use App\Models\MaterialDonation;
 use Exception;
 
@@ -18,7 +19,6 @@ final class CreateNewMaterialDonationsM
         $validator = \Illuminate\Support\Facades\Validator::make($args
         , [
             'name'=>'required',
-            'donor_id'=>'required|exists:donors,id',
             //'phone'=>'required','min:9','max:9','unique:donors,phone'
         ]);
 
@@ -43,11 +43,22 @@ final class CreateNewMaterialDonationsM
 
 
 
+
+            $donor=Donor::
+            updateOrCreate([
+                'phone'=>$args["donor"]["phone"],
+            ],
+                [
+                    'name'=>$args["donor"]["name"],
+                    'gender'=>$args["donor"]["gender"]
+                ]
+                );
+
                $materialdonation= MaterialDonation::create(
                     [
                         'name'=>$args['name'],
                         'note'=>$args['note']??"",
-                        'donor_id'=>$args['donor_id']??"",
+                        'donor'=>$donor,
                         'user_id'=>auth()->user()->id
                     ]
                     );

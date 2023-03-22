@@ -62,7 +62,7 @@ type Mutation {
       CreateNewMonetaryDonationsM(
         amount:Float
         note:String
-        donor_id:Int
+        donor:DonorInput
         type:Int
       ):
       MonetaryDonationRespone @guard
@@ -72,7 +72,7 @@ type Mutation {
       CreateNewMaterialDonationsM(
         name:String
         note:String
-        donor_id:Int
+        donor:DonorInput
       ):
       MaterialDonationRespone @guard
 
@@ -82,10 +82,15 @@ CreateNewDonorM(
     note:String
     gender:Boolean
 ):SearchDonorRespons @guard
-
     # sendEamilVN:User
 }
 
+
+input DonorInput{
+    name:String
+    phone:String
+    gender:Boolean
+}
 
 
 type ResponInfoSendCode{
