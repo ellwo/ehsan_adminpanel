@@ -90,6 +90,7 @@ input DonorInput{
     name:String
     phone:String
     gender:Boolean
+    note:String
 }
 
 

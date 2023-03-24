@@ -50,7 +50,9 @@ final class CreateNewMaterialDonationsM
             ],
                 [
                     'name'=>$args["donor"]["name"],
-                    'gender'=>$args["donor"]["gender"]
+                    'gender'=>$args["donor"]["gender"],
+                    "user_id"=>auth()->user()->id
+
                 ]
                 );
 

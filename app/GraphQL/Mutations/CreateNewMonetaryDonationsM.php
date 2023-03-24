@@ -50,7 +50,8 @@ final class CreateNewMonetaryDonationsM
             ],
                 [
                     'name'=>$args["donor"]["name"],
-                    'gender'=>$args["donor"]["gender"]
+                    'gender'=>$args["donor"]["gender"],
+                    "user_id"=>auth()->user()->id
                 ]
                 );
                $monetary_donation= MonetaryDonation::create(
