@@ -51,7 +51,8 @@ final class CreateNewMaterialDonationsM
                 [
                     'name'=>$args["donor"]["name"],
                     'gender'=>$args["donor"]["gender"],
-                    "user_id"=>auth()->user()->id
+                    "user_id"=>auth()->user()->id,
+                    "note"=>$args["donor"]["note"]??""
 
                 ]
                 );
@@ -59,8 +60,8 @@ final class CreateNewMaterialDonationsM
                $materialdonation= MaterialDonation::create(
                     [
                         'name'=>$args['name'],
-                        'note'=>$args['note']??"",
-                        'donor'=>$donor,
+                        'note'=>$args['note']??$args["donor"]["note"]??"",
+                        'donor_id'=>$donor->id,
                         'user_id'=>auth()->user()->id
                     ]
                     );
